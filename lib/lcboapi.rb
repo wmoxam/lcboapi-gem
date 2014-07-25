@@ -1,0 +1,5 @@
+require_relative 'lcboapi/dataset'
+require_relative 'lcboapi/inventory'
+require_relative 'lcboapi/product'
+require_relative 'lcboapi/store'
+require_relative 'lcboapi/version'

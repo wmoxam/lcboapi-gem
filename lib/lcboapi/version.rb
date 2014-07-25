@@ -1,3 +1,3 @@
-class LcboApi
+module LcboApi
   VERSION = '0.0.1'
 end
