@@ -40,11 +40,15 @@ module LcboApi
       data = begin
         open(@pager['next_page_path'])
       rescue OpenURI::HTTPError
-        return []
+        @last_loaded_collection = []
+        return nil
       end
 
       json = JSON.parse(data.read)
-      return [] unless json['status'] == 200
+      unless json['status'] == 200
+        @last_loaded_collection = []
+        return nil
+      end
 
       @pager = json['pager']
       @last_loaded_collection = instantiate_objects(json['result'])
