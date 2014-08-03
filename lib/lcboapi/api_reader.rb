@@ -11,19 +11,6 @@ module LcboApi
       fetch_by_url endpoint + '/' + id.to_s
     end
 
-    def fetch_by_url(url)
-      data = begin
-        open(ENDPOINT_HOST + url)
-      rescue OpenURI::HTTPError
-        return nil
-      end
-
-      json = JSON.parse(data.read)
-      return nil unless json['status'] == 200
-
-      create_instance json['result']
-    end
-
     def all
       data = begin
         open(ENDPOINT_HOST + endpoint)
@@ -47,6 +34,21 @@ module LcboApi
           inst.instance_variable_set("@#{k}", v)
         end
       end
+    end
+
+    private
+
+    def fetch_by_url(url)
+      data = begin
+        open(ENDPOINT_HOST + url)
+      rescue OpenURI::HTTPError
+        return nil
+      end
+
+      json = JSON.parse(data.read)
+      return nil unless json['status'] == 200
+
+      create_instance json['result']
     end
   end
 end
