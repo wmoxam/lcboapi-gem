@@ -18,7 +18,7 @@ module LcboApi
                 :total_product_inventory_count,
                 :total_product_inventory_volume_in_milliliters,
                 :total_product_inventory_price_in_cents,
-                :total_stores,
+                :total_stores
 
     def self.endpoint
       "/datasets"
